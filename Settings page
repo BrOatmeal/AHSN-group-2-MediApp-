@@ -1,0 +1,112 @@
+import tkinter as tk
+from tkinter import *
+
+settings_page = tk.Tk()
+settings_page.title("settings page")
+settings_page.geometry("500x500")
+settings_page.resizable(False, False)
+settings_page.config(bg="grey38")
+
+list = ["default","light mode", "dark mode", "high contrast"]
+list2 = [12, 14, 16, 18, 20, 22, 24]
+
+Listbox = tk.Listbox(settings_page, width=10,height=4, bg="gold2")
+Listbox.place(x=0, y=0)
+for item in list:
+    Listbox.insert('end', item)
+
+Listbox2 = tk.Listbox(settings_page, width=10,height=4, bg="gold2")
+Listbox2.pack()
+for item in list2:
+    Listbox2.insert('end', item)
+
+var1 = tk.StringVar()
+var2 = tk.StringVar()
+
+Text_example = Label(settings_page, text="Aa", font=("Arial",16), bg="grey38",fg="gold2")
+Text_example.pack()
+
+Password_changer = Button(settings_page, width=15, height=2, text="Change password", bg="gold2")
+Password_changer.place(x=25, y=125)
+
+Password_changer_Entry = Entry(settings_page, width=30, bg="gold2")
+Password_changer_Entry.place(x=175, y=125)
+
+Username_changer = Button(settings_page, width=15, height=2, text="Change username", bg="gold2")
+Username_changer.place(x=25, y=175)
+
+Username_changer_Entry = Entry(settings_page, width=30, bg="gold2")
+Username_changer_Entry.place(x=175, y=175)
+
+
+def background_change(self):
+    if Listbox.size() > 0:
+        value = Listbox.get(Listbox.curselection())
+        var1.set(value)
+
+    if value == "light mode":
+        settings_page.config(bg="snow")
+        Text_example.config(bg="snow", fg="black")
+        Listbox.config(bg="yellow2")
+        Listbox2.config(bg="yellow2")
+        Password_changer.config(bg="yellow2")
+        Password_changer_Entry.config(bg="yellow2")
+        Username_changer.config(bg="yellow2")
+        Username_changer_Entry.config(bg="yellow2")
+    if value == "dark mode":
+        settings_page.config(bg="grey10")
+        Text_example.config(bg="grey10", fg="DarkGoldenrod1")
+        Listbox.config(bg="DarkGoldenrod1")
+        Listbox2.config(bg="DarkGoldenrod1")
+        Password_changer.config(bg="DarkGoldenrod1")
+        Password_changer_Entry.config(bg="DarkGoldenrod1")
+        Username_changer.config(bg="DarkGoldenrod1")
+        Username_changer_Entry.config(bg="DarkGoldenrod1")
+    if value == "high contrast":
+        settings_page.config(bg="grey5")
+        Text_example.config(bg="grey5", fg="yellow")
+        Listbox.config(bg="yellow")
+        Listbox2.config(bg="yellow")
+        Password_changer.config(bg="yellow")
+        Password_changer_Entry.config(bg="yellow")
+        Username_changer.config(bg="yellow")
+        Username_changer_Entry.config(bg="yellow")
+    if value == "default":
+        settings_page.config(bg="grey38")
+        Text_example.config(bg="grey38", fg="gold2")
+        Listbox.config(bg="gold2")
+        Listbox2.config(bg="gold2")
+        Password_changer.config(bg="gold2")
+        Password_changer_Entry.config(bg="gold2")
+        Username_changer.config(bg="gold2")
+        Username_changer_Entry.config(bg="gold2")
+
+
+def font_changer(self):
+    if Listbox2.size() > 0:
+        value1 = Listbox2.get(Listbox2.curselection())
+        var2.set(value1)
+
+    if value1 == 12:
+        Text_example.config(font=("Arial", 12))
+    if value1 == 14:
+        Text_example.config(font=("Arial", 14))
+    if value1 == 16:
+        Text_example.config(font=("Arial", 16))
+    if value1 == 18:
+        Text_example.config(font=("Arial", 18))
+    if value1 == 20:
+        Text_example.config(font=("Arial", 20))
+    if value1 == 22:
+        Text_example.config(font=("Arial", 22))
+    if value1 == 24:
+        Text_example.config(font=("Arial", 24))
+
+
+Listbox.bind('<<ListboxSelect>>', background_change)
+Listbox2.bind('<<ListboxSelect>>', font_changer)
+
+
+settings_page.mainloop()
+
+# need to work on function for the username and password changer
