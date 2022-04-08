@@ -378,10 +378,33 @@ def back_button_settings():
         settings_page.withdraw()
         patientWindow.deiconify()
 
-back_buttons = Button(settings_page, width=10, height=2, bg="gold2", command=back_button_settings, text="back")
+back_buttons = Button(settings_page, width=10, height=2, bg="gold2", command=back_button_settings, text='\u2190')
 back_buttons.place(x=240, y=275)
 
 settings = Button(patientWindow, text=u"\u2699", height=2, width=4, bg="grey48",command=setting_page)
 settings.place(x=260, y=15)
+
+def register_back_button():
+    registerPage.withdraw()
+    MainPage.deiconify()
+
+
+back_button2 = Button(registerPage, command=register_back_button, text='\u2190')
+back_button2.place(x=75, y=193)
+
+def log_in_back_button():
+    LoginPage.withdraw()
+    MainPage.deiconify()
+
+def log_out_button():
+    patientWindow.withdraw()
+    MainPage.deiconify()
+
+
+back_button3 = Button(LoginPage, command=log_in_back_button, text='\u2190')
+back_button3.place(x=75, y=165)
+
+log_out_buttons = Button(patientWindow, command=log_out_button, text="log out", bg="gold2")
+log_out_buttons.place(x=310, y=20)
 
 mainloop()
