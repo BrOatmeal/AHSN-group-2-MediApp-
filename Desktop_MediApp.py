@@ -16,6 +16,13 @@ MainPage.geometry("300x300")
 MainPage.title(" ")
 MainPage.resizable(False, False)
 
+
+appointment_page = Toplevel(MainPage)
+appointment_page.title("patient profile")
+appointment_page.geometry("300x550")
+appointment_page.config(bg="grey38", cursor="Heart")
+appointment_page.withdraw()
+
 patientWindow = Toplevel(MainPage)
 patientWindow.title("patient profile")
 patientWindow.geometry("900x700")
@@ -73,7 +80,6 @@ newlogo_label.place(x=150, y=10)
 
 settings = Button(patientWindow, text=u"\u2699", height=2, width=4, bg="grey48")
 settings.place(x=260, y=15)
-
 
 def login_verify():
     username1 = username_entry1.get()
@@ -180,6 +186,9 @@ def user_not_found():
     Button(UserNotFoundPage, text="OK", command=UserNotFoundPage.withdraw).pack()
 
 
+
+def appointment_page():
+    print("poop")
 # --------LoginSuccess---------
 
 
@@ -195,11 +204,11 @@ def patientpage():
     for index, row in df.iterrows():
         PatNames.append(row["firstname"])
 
-    frame = Frame(patientWindow, height=200, width=400, highlightbackground="gold2", highlightthickness=2, bg="gold2",
+    frame = Frame(patientWindow, height=200, width=400, highlightbackground="gold2", highlightthickness=2, bg="grey38",
                   relief="solid")
     frame.place(x=500, y=300)
 
-    profilePic = Label(patientWindow, height=8, width=15, bg="green")
+    profilePic = Label(patientWindow, height=8, width=15, bg="lightblue")
     profilePic.place(x=30, y=10)
 
     name = Label(frame, text="Name:       ", bg="gold2")
@@ -211,6 +220,9 @@ def patientpage():
 
     settings = Button(text=u"\u2699", height=2, width=4)
     settings.place(x=840, y=70)
+
+    apt_settings = Button(text=u"\u2699", height=2, width=4)
+    apt_settings.place(x=900, y=120)
 
     appointments = Label(patientWindow, text="Appointments", height=15, width=60, relief="solid", bg="gold2")
     appointments.place(x=30, y=150)
@@ -248,163 +260,5 @@ patbtn = Checkbutton(registerPage, text="Patient", onvalue=1, offvalue=0, bg="gr
 patbtn.pack()
 Label(registerPage, text="",bg="grey38", fg="white").pack()
 Button(registerPage, text="Register", width=10, height=1,fg="black", command=register_user).pack()
-
-
-settings_page = Toplevel(MainPage)
-settings_page.title("settings page")
-settings_page.geometry("500x500")
-settings_page.resizable(False, False)
-settings_page.config(bg="grey38")
-settings_page.withdraw()
-
-
-list = ["default","light mode", "dark mode", "high contrast"]
-list2 = [12, 14, 16, 18, 20, 22, 24]
-
-Listbox1 = Listbox(settings_page, width=10,height=4, bg="gold2")
-Listbox1.place(x=0, y=0)
-for item in list:
-    Listbox1.insert('end', item)
-
-Listbox2 = Listbox(settings_page, width=10,height=4, bg="gold2")
-Listbox2.pack()
-for item in list2:
-    Listbox2.insert('end', item)
-
-
-Text_example = Label(settings_page, text="Aa", font=("Arial",16), bg="grey38",fg="gold2")
-Text_example.pack()
-
-Password_changer = Button(settings_page, width=15, height=2, text="Change password", bg="gold2")
-Password_changer.place(x=25, y=125)
-
-Password_changer_Entry = Entry(settings_page, width=30, bg="gold2")
-Password_changer_Entry.config(show='*')
-Password_changer_Entry.place(x=175, y=125)
-
-Username_changer = Button(settings_page, width=15, height=2, text="Change username", bg="gold2")
-Username_changer.place(x=25, y=175)
-
-Username_changer_Entry = Entry(settings_page, width=30, bg="gold2")
-Username_changer_Entry.place(x=175, y=175)
-
-
-
-def setting_page():
-    patientWindow.withdraw()
-    settings_page.deiconify()
-    var1 = StringVar()
-    var2 = StringVar()
-
-    def background_change(self):
-        if Listbox1.size() > 0:
-            value = Listbox1.get(Listbox1.curselection())
-            var1.set(value)
-
-        if value == "light mode":
-            patientWindow.config(bg="snow")
-            settings_page.config(bg="snow")
-            Text_example.config(bg="snow", fg="black")
-            Listbox1.config(bg="yellow2")
-            Listbox2.config(bg="yellow2")
-            Password_changer.config(bg="yellow2")
-            Password_changer_Entry.config(bg="yellow2")
-            Username_changer.config(bg="yellow2")
-            Username_changer_Entry.config(bg="yellow2")
-
-        if value == "dark mode":
-            patientWindow.config(bg="grey10")
-            settings_page.config(bg="grey10")
-            Text_example.config(bg="grey10", fg="DarkGoldenrod1")
-            Listbox1.config(bg="DarkGoldenrod1")
-            Listbox2.config(bg="DarkGoldenrod1")
-            Password_changer.config(bg="DarkGoldenrod1")
-            Password_changer_Entry.config(bg="DarkGoldenrod1")
-            Username_changer.config(bg="DarkGoldenrod1")
-            Username_changer_Entry.config(bg="DarkGoldenrod1")
-
-        if value == "high contrast":
-            patientWindow.config(bg="grey5")
-            settings_page.config(bg="grey5")
-            Text_example.config(bg="grey5", fg="yellow")
-            Listbox1.config(bg="yellow")
-            Listbox2.config(bg="yellow")
-            Password_changer.config(bg="yellow")
-            Password_changer_Entry.config(bg="yellow")
-            Username_changer.config(bg="yellow")
-            Username_changer_Entry.config(bg="yellow")
-
-        if value == "default":
-            patientWindow.config(bg="grey38")
-            settings_page.config(bg="grey38")
-            Text_example.config(bg="grey38", fg="gold2")
-            Listbox1.config(bg="gold2")
-            Listbox2.config(bg="gold2")
-            Password_changer.config(bg="gold2")
-            Password_changer_Entry.config(bg="gold2")
-            Username_changer.config(bg="gold2")
-            Username_changer_Entry.config(bg="gold2")
-
-    def font_changer(self):
-        if Listbox2.size() > 0:
-            value1 = Listbox2.get(Listbox2.curselection())
-            var2.set(value1)
-
-        if value1 == 12:
-            Text_example.config(font=("Arial", 12))
-
-        if value1 == 14:
-            Text_example.config(font=("Arial", 14))
-
-        if value1 == 16:
-            Text_example.config(font=("Arial", 16))
-
-        if value1 == 18:
-            Text_example.config(font=("Arial", 18))
-
-        if value1 == 20:
-            Text_example.config(font=("Arial", 20))
-
-        if value1 == 22:
-            Text_example.config(font=("Arial", 22))
-
-        if value1 == 24:
-            Text_example.config(font=("Arial", 24))
-
-    Listbox1.bind('<<ListboxSelect>>', background_change)
-    Listbox2.bind('<<ListboxSelect>>', font_changer)
-
-def back_button_settings():
-        settings_page.withdraw()
-        patientWindow.deiconify()
-
-back_buttons = Button(settings_page, width=10, height=2, bg="gold2", command=back_button_settings, text='\u2190')
-back_buttons.place(x=240, y=275)
-
-settings = Button(patientWindow, text=u"\u2699", height=2, width=4, bg="grey48",command=setting_page)
-settings.place(x=260, y=15)
-
-def register_back_button():
-    registerPage.withdraw()
-    MainPage.deiconify()
-
-
-back_button2 = Button(registerPage, command=register_back_button, text='\u2190')
-back_button2.place(x=75, y=193)
-
-def log_in_back_button():
-    LoginPage.withdraw()
-    MainPage.deiconify()
-
-def log_out_button():
-    patientWindow.withdraw()
-    MainPage.deiconify()
-
-
-back_button3 = Button(LoginPage, command=log_in_back_button, text='\u2190')
-back_button3.place(x=75, y=165)
-
-log_out_buttons = Button(patientWindow, command=log_out_button, text="log out", bg="gold2")
-log_out_buttons.place(x=310, y=20)
 
 mainloop()
